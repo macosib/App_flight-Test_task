@@ -1,0 +1,4 @@
+watchdog~=2.1.9
+SQLAlchemy~=1.4.32
+psycopg2~=2.9.3
+sqlalchemy_utils
