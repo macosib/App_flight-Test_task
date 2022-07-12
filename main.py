@@ -3,18 +3,22 @@ from config import PATH_IN
 from tracking import observer, event_handler
 from models import add_new_flight, Session, Flight, connection
 from file_manager import file_data_parse, file_manager
+from logger import get_logger
+
+logger = get_logger(__name__)
 
 def start_app():
     """
     Starts the file tracking program.
     """
-
+    logger.info('Старт')
     observer.schedule(event_handler, PATH_IN)
     observer.start()
     try:
         while True:
-            time.sleep(90)
-    except KeyboardInterrupt:
+            time.sleep(0.1)
+    except KeyboardInterrupt as e:
+        logger.exception('Произошла ошибка', e)
         observer.stop()
         observer.join()
 
